@@ -18,11 +18,9 @@ public class IssueMain {
 			choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
-				System.out.println("Enter the IssueId: ");
-				issueId = scanner.nextInt();
 				System.out.println("Enter the BookId: ");
 				bookId = scanner.nextInt();
-				if (issueDetailsDAO.issueBook(issueId, bookId))
+				if (issueDetailsDAO.issueBook(bookId))
 					System.out.println("Issued Successful..");
 				else
 					System.out.println("Attempt failed..");

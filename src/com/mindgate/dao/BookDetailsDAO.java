@@ -30,7 +30,7 @@ public class BookDetailsDAO {
 			preparedStatement.setString(2, bookDetails.getTitle());
 			preparedStatement.setString(3, bookDetails.getAuthor());
 			count = preparedStatement.executeUpdate();
-			connection.close();
+			//connection.close();
 			if (count > 0) {
 				return true;
 			} else {

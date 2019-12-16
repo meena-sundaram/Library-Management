@@ -1,4 +1,5 @@
 package com.mindgate.dao;
+
 import com.mindgate.pojo.IssueDetails;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,13 +20,14 @@ public class IssueDetailsDAO {
 	private String password = "";
 	private List<IssueDetails> issueList = new ArrayList<IssueDetails>();
 
-	public boolean issueBook(int issueId, int bookId) {
-		sql = "insert into issue_details values(?,?,now(),now()+interval 8 day, 'issued')";
+	public boolean issueBook(int bookId) {
+		// sql = "insert into issue_details values(?,?,now(),now()+interval 8
+		// day, 'issued')";
+		sql = "insert into issue_details(bookid,issuedate, returndate, status) values(?,now(),now()+interval 8 day, 'issued')";
 		try {
 			connection = DriverManager.getConnection(url, user, password);
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, issueId);
-			preparedStatement.setInt(2, bookId);
+			preparedStatement.setInt(1, bookId);
 			count = preparedStatement.executeUpdate();
 			if (count > 0) {
 				return true;
@@ -103,7 +105,7 @@ public class IssueDetailsDAO {
 				issueDetails.setIssueDate(resultSet.getDate("issueDate"));
 				issueDetails.setReturnDate(resultSet.getDate("returnDate"));
 				issueDetails.setStatus(resultSet.getString("status"));
-				//System.out.println(issueList);
+				// System.out.println(issueList);
 				issueList.add(issueDetails);
 			}
 			return issueList;
